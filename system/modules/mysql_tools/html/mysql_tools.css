@@ -1,0 +1,29 @@
+#tl_mysql_tools {
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom:20px;
+}
+
+#tl_mysql_tools .warning {
+	background-image:url('warning.png');
+	background-position:5px center;
+	background-repeat: no-repeat;
+	padding-left:60px;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-right:5px;
+	min-height:48px;
+	border: 1px solid #fcda02;
+}
+
+
+.sub_headline_mysql_tools {
+	margin-left:0!important;
+	margin-right:0!important;
+}
+
+/** use the id from the taskcenter, so i don't need to style the ***** table again :) */
+#tl_mysql_tools table {
+	width: 100%!important;
+	margin: 10px 0px 0px 0px!important;
+}

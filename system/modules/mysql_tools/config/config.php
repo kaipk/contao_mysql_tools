@@ -32,8 +32,7 @@
 /**
  * Back end modules
  */
-//TODO: fix this
-if ($GLOBALS['TL_CONFIG']['mysql_tools_hide'] == 1 || version_compare('2.10', '2.10') == 1)
+if (version_compare('2.10', VERSION) == 1 || ($GLOBALS['TL_CONFIG']['mysql_tools_hide'] != 1 && version_compare('2.10', VERSION) < 1))
 {
 	$GLOBALS['BE_MOD']['system']['mysql_tools'] = array
 	(

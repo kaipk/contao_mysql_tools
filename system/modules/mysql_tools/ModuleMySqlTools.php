@@ -57,6 +57,8 @@ class ModuleMySqlTools extends BackendModule
 	 */
 	protected function compile()
 	{
+		$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/mysql_tools/html/mysql_tools.js';
+
 		// pass all language strings to the template
 		$this->loadLanguageFile('mysql_tools');
 
@@ -75,10 +77,11 @@ class ModuleMySqlTools extends BackendModule
 
 
 		// check if we have the mode, only in this case run the checks
-		if ($this->Input->post('mode') != '')
+		if ($this->Input->post('mode') != '' && $this->Input->post('FORM_SUBMIT') == 'mysql_tools')
 		{
 			$arrResult = array();
 			$this->arrTables = $this->Database->listTables();
+			$this->strOptions = $this->generateOptionsString();
 
 			// perform the requested action
 			switch ($this->Input->post('mode'))
@@ -208,6 +211,49 @@ class ModuleMySqlTools extends BackendModule
 		}
 
 		return $arrReturn;
+	}
+
+
+	/**
+	 * Build the options string
+	 * @return void
+	 */
+	protected function generateOptionsString()
+	{
+		$strOptions = '';
+		$arrOptions = array();
+
+		if ($this->Input->post('quick') != '')
+		{
+			$arrOptions[] = 'QUICK';
+		}
+
+		if ($this->Input->post('fast') != '')
+		{
+			$arrOptions[] = 'FAST';
+		}
+
+		if ($this->Input->post('medium') != '')
+		{
+			$arrOptions[] = 'MEDIUM';
+		}
+
+		if ($this->Input->post('extended') != '')
+		{
+			$arrOptions[] = 'EXTENDED';
+		}
+
+		if ($this->Input->post('changed') != '')
+		{
+			$arrOptions[] = 'CHANGED';
+		}
+
+		if ($this->Input->post('usefrmfile') != '')
+		{
+			$arrOptions[] = 'USE_FRM';
+		}
+
+		return implode(' ', $arrOptions);
 	}
 }
 ?>
